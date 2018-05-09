@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PapaBobsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="Crust" Type="int" Nullable="false" />
+          <Property Name="Pepperoni" Type="bit" Nullable="false" />
+          <Property Name="Sausage" Type="bit" Nullable="false" />
+          <Property Name="Onion" Type="bit" Nullable="false" />
+          <Property Name="Green Pepper" Type="bit" Nullable="false" />
+          <Property Name="Total Cost" Type="smallmoney" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Zip Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Payment Type" Type="int" Nullable="false" />
+          <Property Name="Completed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PizzaPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="SmallSizeCost" Type="smallmoney" Nullable="false" />
+          <Property Name="MediumSizeCost" Type="smallmoney" Nullable="false" />
+          <Property Name="LargeSizeCost" Type="smallmoney" Nullable="false" />
+          <Property Name="RegularCrustCost" Type="smallmoney" Nullable="false" />
+          <Property Name="ThinCrustCost" Type="smallmoney" Nullable="false" />
+          <Property Name="ThickCrustCost" Type="smallmoney" Nullable="false" />
+          <Property Name="PepperoniCost" Type="smallmoney" Nullable="false" />
+          <Property Name="SausageCost" Type="smallmoney" Nullable="false" />
+          <Property Name="OnionCost" Type="smallmoney" Nullable="false" />
+          <Property Name="GreenPepperCost" Type="smallmoney" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PapaBobsDBModelStoreContainer">
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PizzaPrice" EntityType="Self.PizzaPrice" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PapaBobsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Guid" Nullable="false" />
+          <Property Name="Size" Type="PapaBobsDBModel.SizeType" Nullable="false" />
+          <Property Name="Crust" Type="PapaBobsDBModel.CrustType" Nullable="false" />
+          <Property Name="Pepperoni" Type="Boolean" Nullable="false" />
+          <Property Name="Sausage" Type="Boolean" Nullable="false" />
+          <Property Name="Onion" Type="Boolean" Nullable="false" />
+          <Property Name="Green_Pepper" Type="Boolean" Nullable="false" />
+          <Property Name="Total_Cost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Zip_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Payment_Type" Type="PapaBobsDBModel.PaymentType" Nullable="false" />
+          <Property Name="Completed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PizzaPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SmallSizeCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="MediumSizeCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="LargeSizeCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="RegularCrustCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="ThinCrustCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="ThickCrustCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="PepperoniCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="SausageCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="OnionCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="GreenPepperCost" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PapaBobsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="PizzaPrices" EntityType="Self.PizzaPrice" />
+        </EntityContainer>
+        <EnumType Name="SizeType" a:ExternalTypeName="DTO.Enums.SizeType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="CrustType" a:ExternalTypeName="DTO.Enums.CrustType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="PaymentType" a:ExternalTypeName="DTO.Enums.PaymentType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PapaBobsDBModelStoreContainer" CdmEntityContainer="PapaBobsDBEntities">
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="PapaBobsDBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Crust" ColumnName="Crust" />
+                <ScalarProperty Name="Pepperoni" ColumnName="Pepperoni" />
+                <ScalarProperty Name="Sausage" ColumnName="Sausage" />
+                <ScalarProperty Name="Onion" ColumnName="Onion" />
+                <ScalarProperty Name="Green_Pepper" ColumnName="Green Pepper" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total Cost" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Zip_Code" ColumnName="Zip Code" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Payment_Type" ColumnName="Payment Type" />
+                <ScalarProperty Name="Completed" ColumnName="Completed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PizzaPrices">
+            <EntityTypeMapping TypeName="PapaBobsDBModel.PizzaPrice">
+              <MappingFragment StoreEntitySet="PizzaPrice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SmallSizeCost" ColumnName="SmallSizeCost" />
+                <ScalarProperty Name="MediumSizeCost" ColumnName="MediumSizeCost" />
+                <ScalarProperty Name="LargeSizeCost" ColumnName="LargeSizeCost" />
+                <ScalarProperty Name="RegularCrustCost" ColumnName="RegularCrustCost" />
+                <ScalarProperty Name="ThinCrustCost" ColumnName="ThinCrustCost" />
+                <ScalarProperty Name="ThickCrustCost" ColumnName="ThickCrustCost" />
+                <ScalarProperty Name="PepperoniCost" ColumnName="PepperoniCost" />
+                <ScalarProperty Name="SausageCost" ColumnName="SausageCost" />
+                <ScalarProperty Name="OnionCost" ColumnName="OnionCost" />
+                <ScalarProperty Name="GreenPepperCost" ColumnName="GreenPepperCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
